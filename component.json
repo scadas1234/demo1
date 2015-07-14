@@ -1,0 +1,44 @@
+{
+  "name": "dataflow-noflo",
+  "description": "bergie/noflo graphs editable with meemoo/dataflow",
+  "author": "Forrest Oliphant <forrest@sembiki.com>",
+  "repo": "forresto/dataflow-noflo",
+  "version": "0.0.1",
+  "keywords": [
+    "fbp",
+    "noflo",
+    "graph",
+    "visual",
+    "dataflow"
+  ],
+  "dependencies": {
+    "meemoo/dataflow": "*",
+    "noflo/noflo": "*",
+    "noflo/noflo-core": "*",
+    "noflo/noflo-flow": "*",
+    "noflo/noflo-objects": "*",
+    "noflo/noflo-strings": "*",
+    "noflo/noflo-dom": "*",
+    "noflo/noflo-css": "*",
+    "noflo/noflo-interaction": "*",
+    "noflo/noflo-physics": "*",
+    "noflo/noflo-math": "*",
+    "d4tocchini/noflo-draggabilly": "*",
+    "noflo/noflo-css": "*"
+  },
+  "scripts": [
+    "src/dataflow-noflo.coffee",
+    "src/component.coffee",
+    "src/subgraph.coffee"
+  ],
+  "main": "src/dataflow-noflo.js",
+  "json": [
+    "component.json",
+    "graphs/Button.json"
+  ],
+  "noflo": {
+    "graphs": {
+      "Button": "graphs/Button.json"
+    }
+  }
+}

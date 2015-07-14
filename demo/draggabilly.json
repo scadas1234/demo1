@@ -1,0 +1,479 @@
+{
+  "properties": {
+    "name": "Movable image"
+  },
+  "exports": [],
+  "processes": {
+    "Touch": {
+      "component": "draggabilly/Draggabilly",
+      "metadata": {
+        "x": 410,
+        "y": 180
+      }
+    },
+    "Container": {
+      "component": "dom/GetElement",
+      "metadata": {
+        "x": 90,
+        "y": 20
+      }
+    },
+    "Image": {
+      "component": "dom/GetElement",
+      "metadata": {
+        "x": 90,
+        "y": 200
+      }
+    },
+    "SendElement": {
+      "component": "core/Split",
+      "metadata": {
+        "x": 90,
+        "y": 390
+      }
+    },
+    "AnchorX": {
+      "component": "core/Split",
+      "metadata": {
+        "x": 750,
+        "y": 40
+      }
+    },
+    "AnchorY": {
+      "component": "core/Split",
+      "metadata": {
+        "x": 750,
+        "y": 150
+      }
+    },
+    "DragX": {
+      "component": "flow/Gate",
+      "metadata": {
+        "x": 750,
+        "y": 290
+      }
+    },
+    "DragY": {
+      "component": "flow/Gate",
+      "metadata": {
+        "x": 750,
+        "y": 460
+      }
+    },
+    "NewX": {
+      "component": "core/Kick",
+      "metadata": {
+        "x": 750,
+        "y": 630
+      }
+    },
+    "SpringX": {
+      "component": "physics/Spring",
+      "metadata": {
+        "x": 1140,
+        "y": 250
+      }
+    },
+    "NewY": {
+      "component": "core/Kick",
+      "metadata": {
+        "x": 750,
+        "y": 770
+      }
+    },
+    "SpringY": {
+      "component": "physics/Spring",
+      "metadata": {
+        "x": 1140,
+        "y": 400
+      }
+    },
+    "PosX": {
+      "component": "core/Merge",
+      "metadata": {
+        "x": 1450,
+        "y": 300
+      }
+    },
+    "PosY": {
+      "component": "core/Merge",
+      "metadata": {
+        "x": 1450,
+        "y": 430
+      }
+    },
+    "Move": {
+      "component": "css/MoveElement",
+      "metadata": {
+        "x": 1480,
+        "y": 700
+      }
+    }
+  },
+  "connections": [
+    {
+      "src": {
+        "process": "Container",
+        "port": "element"
+      },
+      "tgt": {
+        "process": "Touch",
+        "port": "container"
+      },
+      "metadata": {
+        "route": 0
+      }
+    },
+    {
+      "src": {
+        "process": "Image",
+        "port": "element"
+      },
+      "tgt": {
+        "process": "SendElement",
+        "port": "in"
+      },
+      "metadata": {
+        "route": 7
+      }
+    },
+    {
+      "src": {
+        "process": "SendElement",
+        "port": "out"
+      },
+      "tgt": {
+        "process": "Touch",
+        "port": "element"
+      },
+      "metadata": {
+        "route": 7
+      }
+    },
+    {
+      "src": {
+        "process": "SendElement",
+        "port": "out"
+      },
+      "tgt": {
+        "process": "Move",
+        "port": "element"
+      },
+      "metadata": {
+        "route": 7
+      }
+    },
+    {
+      "src": {
+        "process": "AnchorX",
+        "port": "out"
+      },
+      "tgt": {
+        "process": "PosX",
+        "port": "in"
+      },
+      "metadata": {
+        "route": 2
+      }
+    },
+    {
+      "src": {
+        "process": "PosX",
+        "port": "out"
+      },
+      "tgt": {
+        "process": "Move",
+        "port": "x"
+      },
+      "metadata": {
+        "route": 1
+      }
+    },
+    {
+      "src": {
+        "process": "AnchorY",
+        "port": "out"
+      },
+      "tgt": {
+        "process": "PosY",
+        "port": "in"
+      },
+      "metadata": {
+        "route": 10
+      }
+    },
+    {
+      "src": {
+        "process": "PosY",
+        "port": "out"
+      },
+      "tgt": {
+        "process": "Move",
+        "port": "y"
+      },
+      "metadata": {
+        "route": 11
+      }
+    },
+    {
+      "src": {
+        "process": "Touch",
+        "port": "start"
+      },
+      "tgt": {
+        "process": "DragX",
+        "port": "open"
+      }
+    },
+    {
+      "src": {
+        "process": "Touch",
+        "port": "end"
+      },
+      "tgt": {
+        "process": "DragX",
+        "port": "close"
+      }
+    },
+    {
+      "src": {
+        "process": "DragX",
+        "port": "out"
+      },
+      "tgt": {
+        "process": "PosX",
+        "port": "in"
+      },
+      "metadata": {
+        "route": 1
+      }
+    },
+    {
+      "src": {
+        "process": "AnchorX",
+        "port": "out"
+      },
+      "tgt": {
+        "process": "SpringX",
+        "port": "anchor"
+      },
+      "metadata": {
+        "route": 2
+      }
+    },
+    {
+      "src": {
+        "process": "Touch",
+        "port": "movex"
+      },
+      "tgt": {
+        "process": "NewX",
+        "port": "data"
+      },
+      "metadata": {
+        "route": 1
+      }
+    },
+    {
+      "src": {
+        "process": "Touch",
+        "port": "end"
+      },
+      "tgt": {
+        "process": "NewX",
+        "port": "in"
+      }
+    },
+    {
+      "src": {
+        "process": "NewX",
+        "port": "out"
+      },
+      "tgt": {
+        "process": "SpringX",
+        "port": "in"
+      },
+      "metadata": {
+        "route": 1
+      }
+    },
+    {
+      "src": {
+        "process": "SpringX",
+        "port": "out"
+      },
+      "tgt": {
+        "process": "PosX",
+        "port": "in"
+      },
+      "metadata": {
+        "route": 1
+      }
+    },
+    {
+      "src": {
+        "process": "Touch",
+        "port": "start"
+      },
+      "tgt": {
+        "process": "DragY",
+        "port": "open"
+      }
+    },
+    {
+      "src": {
+        "process": "Touch",
+        "port": "end"
+      },
+      "tgt": {
+        "process": "DragY",
+        "port": "close"
+      }
+    },
+    {
+      "src": {
+        "process": "DragY",
+        "port": "out"
+      },
+      "tgt": {
+        "process": "PosY",
+        "port": "in"
+      },
+      "metadata": {
+        "route": 11
+      }
+    },
+    {
+      "src": {
+        "process": "AnchorY",
+        "port": "out"
+      },
+      "tgt": {
+        "process": "SpringY",
+        "port": "anchor"
+      },
+      "metadata": {
+        "route": 10
+      }
+    },
+    {
+      "src": {
+        "process": "Touch",
+        "port": "movey"
+      },
+      "tgt": {
+        "process": "NewY",
+        "port": "data"
+      },
+      "metadata": {
+        "route": 11
+      }
+    },
+    {
+      "src": {
+        "process": "Touch",
+        "port": "end"
+      },
+      "tgt": {
+        "process": "NewY",
+        "port": "in"
+      }
+    },
+    {
+      "src": {
+        "process": "NewY",
+        "port": "out"
+      },
+      "tgt": {
+        "process": "SpringY",
+        "port": "in"
+      },
+      "metadata": {
+        "route": 11
+      }
+    },
+    {
+      "src": {
+        "process": "SpringY",
+        "port": "out"
+      },
+      "tgt": {
+        "process": "PosY",
+        "port": "in"
+      },
+      "metadata": {
+        "route": 11
+      }
+    },
+    {
+      "data": ".area",
+      "tgt": {
+        "process": "Container",
+        "port": "selector"
+      }
+    },
+    {
+      "data": ".area .draggable",
+      "tgt": {
+        "process": "Image",
+        "port": "selector"
+      }
+    },
+    {
+      "data": 150,
+      "tgt": {
+        "process": "AnchorX",
+        "port": "in"
+      }
+    },
+    {
+      "data": 100,
+      "tgt": {
+        "process": "AnchorY",
+        "port": "in"
+      }
+    },
+    {
+      "data": 50,
+      "tgt": {
+        "process": "SpringY",
+        "port": "stiffness"
+      }
+    },
+    {
+      "data": 20,
+      "tgt": {
+        "process": "SpringY",
+        "port": "mass"
+      }
+    },
+    {
+      "data": 2,
+      "tgt": {
+        "process": "SpringY",
+        "port": "friction"
+      }
+    },
+    {
+      "data": 20,
+      "tgt": {
+        "process": "SpringX",
+        "port": "mass"
+      }
+    },
+    {
+      "data": 2,
+      "tgt": {
+        "process": "SpringX",
+        "port": "friction"
+      }
+    },
+    {
+      "data": 60,
+      "tgt": {
+        "process": "SpringX",
+        "port": "stiffness"
+      }
+    }
+  ]
+}
